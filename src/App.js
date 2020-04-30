@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Global from './components/Global/Global'
+import Country from './components/Country/Country'
 
 import './App.css';
 
@@ -8,7 +9,8 @@ class App extends Component{
     super();
     this.state = {
       global:{},
-      dateNow:''
+      dateNow:'',
+      country:[]
     }
   }
 
@@ -34,8 +36,10 @@ dateTransform = ()=>{
 
 
   async componentDidMount(){
-    const {Global} = await this.dataFecht();
+    const {Global ,Countries } = await this.dataFecht();
     this.setState({global : Global})
+    this.setState({country :Countries})
+    // console.log(this.state.country[0].Country)
     this.dateTransform()
   }
 
@@ -46,6 +50,7 @@ dateTransform = ()=>{
       <div className="container text-center">
        <h1>Covid tracker</h1>
        <Global global={this.state.global} date={ this.state.dateNow}/>
+       <Country country={this.state.country}/>
       </div>
     );
   }
