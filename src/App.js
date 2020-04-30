@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Global from './components/Global/Global'
 import Country from './components/Country/Country'
+import SearchBox from './components/SearchBox/SearchBox'
+import Scroll from './components/Scroll/Scroll'
 
 import './App.css';
 
@@ -10,7 +12,7 @@ class App extends Component{
     this.state = {
       global:{},
       dateNow:'',
-      country:[]
+      country:[],
     }
   }
 
@@ -39,18 +41,19 @@ dateTransform = ()=>{
     const {Global ,Countries } = await this.dataFecht();
     this.setState({global : Global})
     this.setState({country :Countries})
-    // console.log(this.state.country[0].Country)
     this.dateTransform()
   }
-
   
-
   render(){
     return (
       <div className="container text-center">
        <h1>Covid tracker</h1>
-       <Global global={this.state.global} date={ this.state.dateNow}/>
-       <Country country={this.state.country}/>
+       <Global global={this.state.global} date={this.state.dateNow}/>
+       <h1>Buscador</h1>
+       <SearchBox SearchChange={this.onSearchChange}/>
+       <Scroll>
+       <Country key={this.state.country.Countries} country={this.state.country}/>
+       </Scroll>
       </div>
     );
   }
