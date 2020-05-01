@@ -49,11 +49,16 @@ dateTransform = ()=>{
       <div className="container text-center">
        <h1>Covid tracker</h1>
        <Global global={this.state.global} date={this.state.dateNow}/>
-       <h1>Buscador</h1>
-       <SearchBox SearchChange={this.onSearchChange}/>
+       <hr/>
+       <h1>TABLA DE DATOS</h1>
        <Scroll>
-       <Country key={this.state.country.Countries} country={this.state.country}/>
+       <Country country={this.state.country}/>
        </Scroll>
+       <footer>
+         <div className="bg-dark p-2">
+         <p className="text-success">Cazabe</p><span role="img" className="display-4">&#128058;</span>
+         </div>
+       </footer>
       </div>
     );
   }
